@@ -5,127 +5,145 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rishab Kumar | Data Analyst Portfolio</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+    body { font-family: 'Inter', sans-serif; background: #141414; color: #fff; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     
-    /* Navigation */
-    nav { position: fixed; top: 0; width: 100%; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #1e293b; }
-    .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.5rem; font-weight: 700; background: linear-gradient(135deg, #60a5fa, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    /* Netflix Navigation */
+    nav { position: fixed; top: 0; width: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%); z-index: 1000; padding: 1rem 4%; transition: background 0.3s; }
+    nav.scrolled { background: #141414; }
+    .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: #e50914; letter-spacing: 2px; }
     .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: #94a3b8; font-size: 0.9rem; transition: color 0.3s; }
-    .nav-links a:hover { color: #22d3ee; }
+    .nav-links a { color: #e5e5e5; font-size: 0.9rem; transition: color 0.3s; }
+    .nav-links a:hover { color: #fff; }
     
-    /* Hero Section */
-    .hero { min-height: 100vh; display: flex; align-items: center; padding: 6rem 2rem 4rem; }
-    .hero-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: center; }
-    .hero-subtitle { color: #22d3ee; font-weight: 500; margin-bottom: 0.5rem; }
-    .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .hero-title { font-size: 1.25rem; color: #94a3b8; margin-bottom: 1.5rem; }
-    .hero-description { color: #cbd5e1; margin-bottom: 2rem; max-width: 540px; }
+    /* Hero - Netflix Style */
+    .hero { min-height: 100vh; position: relative; display: flex; align-items: center; padding: 0 4%; background: linear-gradient(to right, #141414 30%, transparent 70%); }
+    .hero-bg { position: absolute; top: 0; right: 0; width: 65%; height: 100%; z-index: -1; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-bg::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #141414 0%, rgba(20,20,20,0.8) 50%, rgba(20,20,20,0.4) 100%); }
+    .hero-content { max-width: 600px; z-index: 1; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(229,9,20,0.2); border: 1px solid #e50914; padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.8rem; color: #e50914; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; }
+    .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; letter-spacing: 3px; margin-bottom: 0.5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
+    .hero-title { font-size: 1.4rem; color: #e5e5e5; margin-bottom: 1.5rem; font-weight: 300; }
+    .hero-description { color: #b3b3b3; margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.7; }
+    .hero-meta { display: flex; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+    .meta-item i { color: #e50914; }
+    .meta-item span { color: #46d369; font-weight: 600; }
     .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn { padding: 0.875rem 1.5rem; border-radius: 0.5rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; }
-    .btn-primary { background: linear-gradient(135deg, #3b82f6, #22d3ee); color: white; }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
-    .btn-secondary { border: 1px solid #334155; color: #e2e8f0; }
-    .btn-secondary:hover { border-color: #22d3ee; }
-    .hero-image { width: 280px; height: 280px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #22d3ee); padding: 4px; }
-    .hero-image-inner { width: 100%; height: 100%; border-radius: 50%; background: #1e293b; display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, #60a5fa, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .btn { padding: 0.9rem 2rem; border-radius: 4px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.75rem; transition: all 0.3s; font-size: 1rem; border: none; cursor: pointer; }
+    .btn-play { background: #fff; color: #141414; }
+    .btn-play:hover { background: rgba(255,255,255,0.8); }
+    .btn-info { background: rgba(109,109,110,0.7); color: #fff; }
+    .btn-info:hover { background: rgba(109,109,110,0.5); }
     
-    /* Stats */
-    .stats { background: rgba(30, 41, 59, 0.5); border-top: 1px solid #1e293b; border-bottom: 1px solid #1e293b; padding: 2rem; }
-    .stats-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
-    .stat-value { font-size: 2rem; font-weight: 700; color: #22d3ee; }
-    .stat-label { color: #94a3b8; font-size: 0.875rem; }
+    /* Section Styles - Netflix Row */
+    section { padding: 3rem 4%; }
+    .section-container { max-width: 1400px; margin: 0 auto; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-title::before { content: ''; width: 4px; height: 28px; background: #e50914; border-radius: 2px; }
     
-    /* Sections */
-    section { padding: 5rem 2rem; }
-    .section-container { max-width: 1200px; margin: 0 auto; }
-    .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .section-subtitle { color: #94a3b8; margin-bottom: 3rem; }
-    .section-alt { background: rgba(30, 41, 59, 0.3); }
+    /* Stats Row */
+    .stats { background: linear-gradient(to right, #1a1a1a, #141414); border-top: 1px solid #333; border-bottom: 1px solid #333; }
+    .stats-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .stat-card { text-align: center; padding: 1rem; }
+    .stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: #e50914; letter-spacing: 1px; }
+    .stat-label { color: #808080; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
     
-    /* Experience */
-    .exp-card { border: 1px solid #1e293b; border-radius: 0.75rem; margin-bottom: 1rem; overflow: hidden; transition: border-color 0.3s; }
-    .exp-card:hover { border-color: #334155; }
-    .exp-header { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-    .exp-title { font-size: 1.125rem; font-weight: 600; }
-    .exp-company { color: #22d3ee; margin-left: 0.5rem; }
-    .exp-meta { color: #94a3b8; font-size: 0.875rem; margin-top: 0.25rem; }
-    .exp-icon { color: #94a3b8; transition: transform 0.3s; }
-    .exp-card.active .exp-icon { transform: rotate(180deg); }
-    .exp-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-    .exp-card.active .exp-content { max-height: 500px; }
-    .exp-body { padding: 0 1.5rem 1.5rem; border-top: 1px solid #1e293b; }
-    .exp-body ul { margin: 1rem 0; padding-left: 0; list-style: none; }
-    .exp-body li { margin-bottom: 0.5rem; color: #cbd5e1; display: flex; gap: 0.5rem; }
-    .exp-body li::before { content: "•"; color: #22d3ee; }
-    .exp-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-    .skill-tag { padding: 0.25rem 0.75rem; background: #1e293b; border-radius: 9999px; font-size: 0.75rem; color: #cbd5e1; }
+    /* Experience Cards - Netflix Tiles */
+    .exp-row { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-behavior: smooth; }
+    .exp-row::-webkit-scrollbar { height: 4px; }
+    .exp-row::-webkit-scrollbar-track { background: #333; }
+    .exp-row::-webkit-scrollbar-thumb { background: #e50914; border-radius: 4px; }
+    .exp-card { min-width: 320px; background: #1a1a1a; border-radius: 4px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; flex-shrink: 0; }
+    .exp-card:hover { transform: scale(1.05); box-shadow: 0 10px 40px rgba(0,0,0,0.5); z-index: 10; }
+    .exp-header-bar { height: 4px; background: #e50914; }
+    .exp-body { padding: 1.25rem; }
+    .exp-company { color: #e50914; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
+    .exp-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .exp-meta { color: #808080; font-size: 0.8rem; margin-bottom: 1rem; }
+    .exp-highlights { font-size: 0.85rem; color: #b3b3b3; }
+    .exp-highlights li { margin-bottom: 0.4rem; display: flex; gap: 0.5rem; }
+    .exp-highlights li::before { content: "▸"; color: #e50914; }
+    .exp-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .skill-tag { padding: 0.25rem 0.6rem; background: #333; border-radius: 3px; font-size: 0.7rem; color: #b3b3b3; }
     
-    /* Projects */
+    /* Projects - Featured Section */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .project-card { background: #1e293b; border: 1px solid #334155; border-radius: 0.75rem; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
-    .project-card:hover { border-color: #475569; transform: translateY(-4px); }
-    .project-accent { height: 4px; }
-    .project-accent.blue { background: linear-gradient(90deg, #3b82f6, #22d3ee); }
-    .project-accent.purple { background: linear-gradient(90deg, #a855f7, #ec4899); }
-    .project-body { padding: 1.5rem; }
-    .project-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
-    .project-desc { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem; }
+    .project-card { background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border-radius: 6px; overflow: hidden; border: 1px solid #333; transition: all 0.3s; position: relative; }
+    .project-card:hover { border-color: #e50914; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(229,9,20,0.2); }
+    .project-card::before { content: 'FEATURED'; position: absolute; top: 1rem; left: 1rem; background: #e50914; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; border-radius: 2px; }
+    .project-body { padding: 3rem 1.5rem 1.5rem; }
+    .project-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 0.75rem; }
+    .project-desc { color: #808080; font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.6; }
     .project-metrics { margin-bottom: 1rem; }
-    .project-metrics span { font-size: 0.8rem; color: #22d3ee; margin-right: 1rem; }
+    .project-metrics span { display: inline-block; font-size: 0.8rem; color: #46d369; margin-right: 1rem; font-weight: 500; }
     
-    /* Skills */
-    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .skill-category { padding: 1.5rem; background: rgba(30, 41, 59, 0.5); border: 1px solid #1e293b; border-radius: 0.75rem; }
-    .skill-category h3 { color: #22d3ee; font-size: 0.875rem; font-weight: 500; margin-bottom: 1rem; }
+    /* Skills Section */
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .skill-category { background: #1a1a1a; border-radius: 6px; padding: 1.5rem; border: 1px solid #333; transition: border-color 0.3s; }
+    .skill-category:hover { border-color: #e50914; }
+    .skill-category h3 { color: #e50914; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
     .skill-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-item { padding: 0.5rem 0.875rem; background: #1e293b; border-radius: 0.5rem; font-size: 0.875rem; }
+    .skill-item { padding: 0.5rem 0.875rem; background: #333; border-radius: 4px; font-size: 0.85rem; transition: background 0.3s; }
+    .skill-item:hover { background: #e50914; }
     
     /* Education */
     .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .edu-card { padding: 1.5rem; border: 1px solid #1e293b; border-radius: 0.75rem; }
-    .edu-year { color: #22d3ee; font-size: 0.875rem; margin-bottom: 0.25rem; }
-    .edu-degree { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem; }
-    .edu-school { color: #94a3b8; }
+    .edu-card { background: #1a1a1a; padding: 1.5rem; border-radius: 6px; border-left: 4px solid #e50914; }
+    .edu-year { color: #e50914; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .edu-degree { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .edu-school { color: #808080; }
     
     /* Contact */
-    .contact { text-align: center; }
-    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2rem; }
-    .contact-link { padding: 0.875rem 1.25rem; background: #1e293b; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.5rem; transition: background 0.3s; }
-    .contact-link:hover { background: #334155; }
-    .contact-link i { color: #22d3ee; }
+    .contact { text-align: center; background: linear-gradient(to bottom, #141414, #0a0a0a); }
+    .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .contact-subtitle { color: #808080; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .contact-link { padding: 1rem 1.5rem; background: #1a1a1a; border-radius: 4px; display: flex; align-items: center; gap: 0.75rem; transition: all 0.3s; border: 1px solid #333; }
+    .contact-link:hover { background: #e50914; border-color: #e50914; }
+    .contact-link i { font-size: 1.1rem; }
     
     /* Footer */
-    footer { text-align: center; padding: 2rem; border-top: 1px solid #1e293b; color: #64748b; font-size: 0.875rem; }
+    footer { text-align: center; padding: 2rem 4%; background: #0a0a0a; color: #808080; font-size: 0.8rem; border-top: 1px solid #222; }
+    
+    /* About Section */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .about-image { position: relative; }
+    .about-image img { width: 100%; max-width: 400px; border-radius: 6px; border: 2px solid #333; }
+    .about-content h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 1px; margin-bottom: 1rem; }
+    .about-text { color: #b3b3b3; margin-bottom: 1.5rem; line-height: 1.8; }
+    .soft-skills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .soft-skill { padding: 0.5rem 1rem; background: rgba(229,9,20,0.1); border: 1px solid #e50914; border-radius: 20px; font-size: 0.85rem; color: #e5e5e5; }
     
     /* Responsive */
     @media (max-width: 1024px) {
-      .hero-container { grid-template-columns: 1fr; text-align: center; }
-      .hero-image { margin: 0 auto 2rem; width: 200px; height: 200px; }
-      .hero-description { margin: 0 auto 2rem; }
-      .hero-buttons { justify-content: center; }
-      .stats-container { grid-template-columns: repeat(2, 1fr); }
+      .hero-bg { width: 100%; opacity: 0.3; }
+      .hero { background: linear-gradient(to top, #141414 0%, rgba(20,20,20,0.9) 100%); }
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-image img { max-width: 300px; margin: 0 auto; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-container { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 3rem; }
       .projects-grid, .edu-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
+      .hero-meta { gap: 1rem; }
     }
   </style>
 </head>
 <body>
   <!-- Navigation -->
-  <nav>
+  <nav id="navbar">
     <div class="nav-container">
-      <span class="logo">RK</span>
+      <span class="logo">RISHAB KUMAR</span>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -137,20 +155,23 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero" id="about">
-    <div class="hero-container">
-      <div>
-        <p class="hero-subtitle">Hello, I'm</p>
-        <h1>Rishab Kumar</h1>
-        <p class="hero-title">Data Analyst & Business Intelligence Professional</p>
-        <p class="hero-description">Turning complex data into clear decisions that drive measurable business outcomes. MS Business Analytics @ Northeastern with expertise in NLP, financial modeling, and strategic analytics.</p>
-        <div class="hero-buttons">
-          <a href="mailto:dharishk1803@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Get in Touch</a>
-          <a href="https://linkedin.com/in/rishabkumar18" target="_blank" class="btn btn-secondary"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200" alt="Data Background">
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag"><i class="fas fa-chart-line"></i> Available for Hire</div>
+      <h1>RISHAB KUMAR</h1>
+      <p class="hero-title">Data Analyst & Business Intelligence Professional</p>
+      <p class="hero-description">Transforming complex data into strategic decisions that drive measurable business outcomes. Specializing in NLP, financial modeling, and actionable analytics.</p>
+      <div class="hero-meta">
+        <div class="meta-item"><span>98%</span> Match for Analytics Roles</div>
+        <div class="meta-item"><i class="fas fa-briefcase"></i> 2 Years Experience</div>
+        <div class="meta-item"><i class="fas fa-graduation-cap"></i> MS Business Analytics</div>
       </div>
-      <div class="hero-image">
-        <div class="hero-image-inner">RK</div>
+      <div class="hero-buttons">
+        <a href="mailto:dharishk1803@gmail.com" class="btn btn-play"><i class="fas fa-play"></i> Hire Me</a>
+        <a href="#about" class="btn btn-info"><i class="fas fa-info-circle"></i> More Info</a>
       </div>
     </div>
   </section>
@@ -158,130 +179,158 @@
   <!-- Stats -->
   <section class="stats">
     <div class="stats-container">
-      <div><p class="stat-value">4+</p><p class="stat-label">Years Experience</p></div>
-      <div><p class="stat-value">$150K+</p><p class="stat-label">Revenue Impact</p></div>
-      <div><p class="stat-value">40,000+</p><p class="stat-label">SKUs Analyzed</p></div>
-      <div><p class="stat-value">91%</p><p class="stat-label">Pitch Approval</p></div>
+      <div class="stat-card"><p class="stat-value">2+</p><p class="stat-label">Years Experience</p></div>
+      <div class="stat-card"><p class="stat-value">$150K+</p><p class="stat-label">Revenue Impact</p></div>
+      <div class="stat-card"><p class="stat-value">40,000+</p><p class="stat-label">SKUs Analyzed</p></div>
+      <div class="stat-card"><p class="stat-value">91%</p><p class="stat-label">Pitch Approval</p></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="section-container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="https://i.imgur.com/placeholder.jpg" alt="Rishab Kumar" id="profile-img">
+        </div>
+        <div class="about-content">
+          <h3>Turning Data Into Decisions</h3>
+          <p class="about-text">I'm passionate about helping organizations transform raw data into clear, actionable insights that drive real business outcomes. With a Master's in Business Analytics from Northeastern University, I bring a unique blend of technical expertise and business acumen across finance, consumer goods, e-commerce, and nonprofit sectors.</p>
+          <p class="about-text">What sets me apart is my ability to stay calm under pressure and adapt quickly in fast-paced environments. I thrive at the intersection of data, strategy, and people—ensuring insights are not only accurate but actionable and aligned with business priorities.</p>
+          <h4 style="color: #e50914; font-size: 0.9rem; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Core Strengths</h4>
+          <div class="soft-skills">
+            <span class="soft-skill">Strategic Thinking</span>
+            <span class="soft-skill">Storytelling with Data</span>
+            <span class="soft-skill">Cross-functional Collaboration</span>
+            <span class="soft-skill">Stakeholder Management</span>
+            <span class="soft-skill">Problem Solving</span>
+            <span class="soft-skill">Adaptability</span>
+            <span class="soft-skill">Clear Communication</span>
+            <span class="soft-skill">Attention to Detail</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Experience -->
   <section id="experience">
     <div class="section-container">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">A track record of driving impact through data</p>
-      
-      <div class="exp-card">
-        <div class="exp-header" onclick="toggleExp(this)">
-          <div><span class="exp-title">Data Insights Analyst</span><span class="exp-company">@ NOVICA</span><p class="exp-meta">Boston, MA • Sep 2025 – Dec 2025</p></div>
-          <i class="fas fa-chevron-down exp-icon"></i>
+      <h2 class="section-title">Work Experience</h2>
+      <div class="exp-row">
+        
+        <div class="exp-card">
+          <div class="exp-header-bar"></div>
+          <div class="exp-body">
+            <p class="exp-company">NOVICA</p>
+            <h3 class="exp-title">Data Insights Analyst</h3>
+            <p class="exp-meta">Boston, MA • Sep 2025 – Dec 2025</p>
+            <ul class="exp-highlights">
+              <li>Built BERT-based NLP pipeline on 10,000+ Amazon reviews</li>
+              <li>Uncovered conversion gaps across 40,000+ SKUs</li>
+              <li>Designed executive dashboard across 25 categories</li>
+            </ul>
+            <div class="exp-skills"><span class="skill-tag">NLP</span><span class="skill-tag">BERT</span><span class="skill-tag">Python</span><span class="skill-tag">Tableau</span></div>
+          </div>
         </div>
-        <div class="exp-content"><div class="exp-body">
-          <ul>
-            <li>Built BERT-based NLP pipeline on 10,000+ Amazon reviews, transforming customer feedback into actionable insights</li>
-            <li>Uncovered conversion gaps across 40,000+ SKUs by identifying key themes for targeted product improvements</li>
-            <li>Designed executive dashboard on 17,800+ reviews across 25 categories, enabling client-driven decisions</li>
-          </ul>
-          <div class="exp-skills"><span class="skill-tag">NLP</span><span class="skill-tag">BERT</span><span class="skill-tag">Python</span><span class="skill-tag">Tableau</span><span class="skill-tag">Sentiment Analysis</span></div>
-        </div></div>
-      </div>
 
-      <div class="exp-card">
-        <div class="exp-header" onclick="toggleExp(this)">
-          <div><span class="exp-title">Senior Financial Analyst</span><span class="exp-company">@ 360 Huntington Fund</span><p class="exp-meta">Boston, MA • Sep 2024 – Dec 2025</p></div>
-          <i class="fas fa-chevron-down exp-icon"></i>
+        <div class="exp-card">
+          <div class="exp-header-bar"></div>
+          <div class="exp-body">
+            <p class="exp-company">360 Huntington Fund</p>
+            <h3 class="exp-title">Senior Financial Analyst</h3>
+            <p class="exp-meta">Boston, MA • Sep 2024 – Dec 2025</p>
+            <ul class="exp-highlights">
+              <li>Equity research on 50+ public companies via Bloomberg</li>
+              <li>Built DCF, P/E, and EV/EBITDA valuation models</li>
+              <li>91% investment committee approval on stock pitch</li>
+            </ul>
+            <div class="exp-skills"><span class="skill-tag">Bloomberg</span><span class="skill-tag">DCF</span><span class="skill-tag">Financial Modeling</span></div>
+          </div>
         </div>
-        <div class="exp-content"><div class="exp-body">
-          <ul>
-            <li>Conducted equity research using Bloomberg Terminal across 50+ public companies</li>
-            <li>Built DCF, P/E, and EV/EBITDA valuation models for investment recommendations</li>
-            <li>Delivered stock pitch earning 91% investment committee approval for $2M student-managed fund</li>
-          </ul>
-          <div class="exp-skills"><span class="skill-tag">Bloomberg</span><span class="skill-tag">Financial Modeling</span><span class="skill-tag">DCF</span><span class="skill-tag">Equity Research</span></div>
-        </div></div>
-      </div>
 
-      <div class="exp-card">
-        <div class="exp-header" onclick="toggleExp(this)">
-          <div><span class="exp-title">Business Intelligence Analyst</span><span class="exp-company">@ EIM Tech</span><p class="exp-meta">Bridgewater, NJ • Jul 2025 – Aug 2025</p></div>
-          <i class="fas fa-chevron-down exp-icon"></i>
+        <div class="exp-card">
+          <div class="exp-header-bar"></div>
+          <div class="exp-body">
+            <p class="exp-company">EIM Tech</p>
+            <h3 class="exp-title">Business Intelligence Analyst</h3>
+            <p class="exp-meta">Bridgewater, NJ • Jul 2025 – Aug 2025</p>
+            <ul class="exp-highlights">
+              <li>Automated workflows, cutting manual effort by 25%</li>
+              <li>Rebuilt datasets, reducing storage needs by 20%</li>
+              <li>Designed unified Tableau dashboards for KPI tracking</li>
+            </ul>
+            <div class="exp-skills"><span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">Tableau</span></div>
+          </div>
         </div>
-        <div class="exp-content"><div class="exp-body">
-          <ul>
-            <li>Automated Smartsheet and Excel workflows, cutting manual effort by 25%</li>
-            <li>Rebuilt datasets in Python, reducing storage needs by 20% while improving accuracy</li>
-            <li>Designed Tableau dashboards unifying sales, inventory, and customer signals</li>
-          </ul>
-          <div class="exp-skills"><span class="skill-tag">SQL</span><span class="skill-tag">Python</span><span class="skill-tag">Tableau</span><span class="skill-tag">Process Automation</span></div>
-        </div></div>
-      </div>
 
-      <div class="exp-card">
-        <div class="exp-header" onclick="toggleExp(this)">
-          <div><span class="exp-title">Business Analyst</span><span class="exp-company">@ Paris Perfumes</span><p class="exp-meta">Dubai, UAE • May 2024 – Aug 2024</p></div>
-          <i class="fas fa-chevron-down exp-icon"></i>
+        <div class="exp-card">
+          <div class="exp-header-bar"></div>
+          <div class="exp-body">
+            <p class="exp-company">Paris Perfumes</p>
+            <h3 class="exp-title">Business Analyst</h3>
+            <p class="exp-meta">Dubai, UAE • May 2024 – Aug 2024</p>
+            <ul class="exp-highlights">
+              <li>Drove 17% sales increase via A/B tested campaigns</li>
+              <li>Competitor analysis using PitchBook and Statista</li>
+              <li>Reduced project timelines by 25% with Agile/JIRA</li>
+            </ul>
+            <div class="exp-skills"><span class="skill-tag">A/B Testing</span><span class="skill-tag">Google Analytics</span><span class="skill-tag">Agile</span></div>
+          </div>
         </div>
-        <div class="exp-content"><div class="exp-body">
-          <ul>
-            <li>Drove 17% sales increase through A/B tested marketing campaigns</li>
-            <li>Conducted competitor analysis using PitchBook and Statista to identify market opportunities</li>
-            <li>Implemented Agile practices with JIRA, reducing project timelines by 25%</li>
-          </ul>
-          <div class="exp-skills"><span class="skill-tag">A/B Testing</span><span class="skill-tag">Market Analysis</span><span class="skill-tag">Google Analytics</span><span class="skill-tag">Agile</span></div>
-        </div></div>
-      </div>
 
-      <div class="exp-card">
-        <div class="exp-header" onclick="toggleExp(this)">
-          <div><span class="exp-title">Analytics Team Lead</span><span class="exp-company">@ Ruffalo Noel Levitz</span><p class="exp-meta">Buffalo, NY • Jan 2021 – May 2024</p></div>
-          <i class="fas fa-chevron-down exp-icon"></i>
+        <div class="exp-card">
+          <div class="exp-header-bar"></div>
+          <div class="exp-body">
+            <p class="exp-company">Ruffalo Noel Levitz</p>
+            <h3 class="exp-title">Analytics Team Lead</h3>
+            <p class="exp-meta">Buffalo, NY • Jan 2021 – May 2024</p>
+            <ul class="exp-highlights">
+              <li>Led 30-member cross-functional team</li>
+              <li>Drove $150K+ in donor contributions</li>
+              <li>Built dashboards boosting fundraising efficiency by 15%</li>
+            </ul>
+            <div class="exp-skills"><span class="skill-tag">Leadership</span><span class="skill-tag">Tableau</span><span class="skill-tag">Campaign Analytics</span></div>
+          </div>
         </div>
-        <div class="exp-content"><div class="exp-body">
-          <ul>
-            <li>Led 30-member team, fostering cross-functional collaboration across IT and operations</li>
-            <li>Drove $150K+ in donor contributions through data-driven engagement strategies</li>
-            <li>Built Tableau dashboards boosting fundraising efficiency by 15%</li>
-          </ul>
-          <div class="exp-skills"><span class="skill-tag">Team Leadership</span><span class="skill-tag">Tableau</span><span class="skill-tag">Campaign Analytics</span><span class="skill-tag">Stakeholder Management</span></div>
-        </div></div>
+
       </div>
     </div>
   </section>
 
   <!-- Projects -->
-  <section id="projects" class="section-alt">
+  <section id="projects" style="background: #0d0d0d;">
     <div class="section-container">
       <h2 class="section-title">Featured Projects</h2>
-      <p class="section-subtitle">End-to-end analytics solutions with measurable impact</p>
-      
       <div class="projects-grid">
+        
         <div class="project-card">
-          <div class="project-accent blue"></div>
           <div class="project-body">
             <h3 class="project-title">NOVICA Customer Review Analysis</h3>
             <p class="project-desc">End-to-end NLP system processing 40,000+ product SKUs using BERT sentiment analysis, LDA topic modeling, and aspect-based sentiment modules for executive decision-making.</p>
             <div class="project-metrics">
-              <span>• 10,000+ reviews analyzed</span>
-              <span>• 25 product categories</span>
-              <span>• Executive dashboard delivery</span>
+              <span>✓ 10,000+ reviews analyzed</span>
+              <span>✓ 25 product categories</span>
+              <span>✓ Executive dashboard</span>
             </div>
             <div class="exp-skills"><span class="skill-tag">Python</span><span class="skill-tag">BERT</span><span class="skill-tag">LDA</span><span class="skill-tag">Tableau</span><span class="skill-tag">NLP</span></div>
           </div>
         </div>
         
         <div class="project-card">
-          <div class="project-accent purple"></div>
           <div class="project-body">
             <h3 class="project-title">Used Car Market Segmentation</h3>
             <p class="project-desc">Comprehensive market analysis of 98,000+ vehicle listings using machine learning to identify pricing strategies and buyer personas for targeted marketing.</p>
             <div class="project-metrics">
-              <span>• 98,000+ listings</span>
-              <span>• 9 brands analyzed</span>
-              <span>• 4 buyer personas identified</span>
+              <span>✓ 98,000+ listings</span>
+              <span>✓ 9 brands analyzed</span>
+              <span>✓ 4 buyer personas</span>
             </div>
             <div class="exp-skills"><span class="skill-tag">Python</span><span class="skill-tag">Polars</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">K-means</span><span class="skill-tag">PCA</span></div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -290,8 +339,6 @@
   <section id="skills">
     <div class="section-container">
       <h2 class="section-title">Technical Skills</h2>
-      <p class="section-subtitle">Tools and technologies I work with</p>
-      
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Languages & Analytics</h3>
@@ -314,11 +361,9 @@
   </section>
 
   <!-- Education -->
-  <section class="section-alt">
+  <section style="background: #0d0d0d;">
     <div class="section-container">
       <h2 class="section-title">Education</h2>
-      <p class="section-subtitle">&nbsp;</p>
-      
       <div class="edu-grid">
         <div class="edu-card">
           <p class="edu-year">2024 – 2025</p>
@@ -337,9 +382,8 @@
   <!-- Contact -->
   <section id="contact" class="contact">
     <div class="section-container">
-      <h2 class="section-title">Let's Connect</h2>
-      <p class="section-subtitle">Open to opportunities in business intelligence and analytics</p>
-      
+      <h2 class="contact-title">Let's Connect</h2>
+      <p class="contact-subtitle">Open to opportunities in business intelligence and analytics where I can bridge data and decision-making to create measurable value.</p>
       <div class="contact-links">
         <a href="mailto:dharishk1803@gmail.com" class="contact-link"><i class="fas fa-envelope"></i> dharishk1803@gmail.com</a>
         <a href="tel:+17162079922" class="contact-link"><i class="fas fa-phone"></i> (716) 207-9922</a>
@@ -351,14 +395,19 @@
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Rishab Kumar. Built with passion for data.</p>
+    <p>© 2025 Rishab Kumar. Turning data into decisions.</p>
   </footer>
 
   <script>
-    function toggleExp(header) {
-      const card = header.parentElement;
-      card.classList.toggle('active');
-    }
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
   </script>
 </body>
 </html>
