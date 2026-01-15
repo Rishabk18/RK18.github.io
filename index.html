@@ -75,7 +75,7 @@
     
     /* Projects - Featured Section */
     .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .project-card { background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border-radius: 6px; overflow: hidden; border: 1px solid #333; transition: all 0.3s; position: relative; }
+    .project-card { background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); border-radius: 6px; overflow: hidden; border: 1px solid #333; transition: all 0.3s; position: relative; cursor: pointer; }
     .project-card:hover { border-color: #e50914; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(229,9,20,0.2); }
     .project-card::before { content: 'FEATURED'; position: absolute; top: 1rem; left: 1rem; background: #e50914; padding: 0.25rem 0.75rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; border-radius: 2px; }
     .project-body { padding: 3rem 1.5rem 1.5rem; }
@@ -121,6 +121,55 @@
     .soft-skills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .soft-skill { padding: 0.5rem 1rem; background: rgba(229,9,20,0.1); border: 1px solid #e50914; border-radius: 20px; font-size: 0.85rem; color: #e5e5e5; }
     
+    /* ============ PROJECT MODAL STYLES ============ */
+    .project-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; overflow-y: auto; }
+    .project-modal.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    .modal-content { max-width: 1000px; margin: 0 auto; padding: 2rem 4%; padding-bottom: 4rem; }
+    .modal-close { position: fixed; top: 1.5rem; right: 2rem; background: rgba(255,255,255,0.1); border: none; color: #fff; font-size: 1.5rem; cursor: pointer; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.3s; z-index: 2001; }
+    .modal-close:hover { background: #e50914; }
+    
+    .modal-header { text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid #333; margin-bottom: 2rem; }
+    .modal-header h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .modal-header p { color: #808080; font-size: 1.1rem; }
+    
+    .modal-section { margin-bottom: 2.5rem; }
+    .modal-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 1px; margin-bottom: 1rem; color: #e50914; display: flex; align-items: center; gap: 0.5rem; }
+    .modal-section h2::before { content: ''; width: 4px; height: 24px; background: #e50914; border-radius: 2px; }
+    .modal-section p { color: #b3b3b3; line-height: 1.8; margin-bottom: 1rem; }
+    .modal-section ul { color: #b3b3b3; margin-left: 1.5rem; margin-bottom: 1rem; }
+    .modal-section li { margin-bottom: 0.5rem; }
+    
+    .modal-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    .modal-table th, .modal-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid #333; }
+    .modal-table th { color: #e50914; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+    .modal-table td { color: #b3b3b3; }
+    
+    .modal-code { background: #0d0d0d; border: 1px solid #333; border-radius: 6px; padding: 1.25rem; margin: 1rem 0; overflow-x: auto; }
+    .modal-code pre { color: #b3b3b3; font-family: 'Monaco', 'Consolas', monospace; font-size: 0.8rem; line-height: 1.6; margin: 0; }
+    .modal-code .comment { color: #6a737d; }
+    .modal-code .keyword { color: #e50914; }
+    .modal-code .string { color: #46d369; }
+    .modal-code .function { color: #79b8ff; }
+    
+    .image-placeholder { background: linear-gradient(135deg, #1a1a1a, #0d0d0d); border: 2px dashed #333; border-radius: 8px; padding: 3rem 2rem; text-align: center; margin: 1.5rem 0; }
+    .image-placeholder i { font-size: 2.5rem; color: #333; margin-bottom: 1rem; display: block; }
+    .image-placeholder span { color: #555; font-size: 0.9rem; }
+    
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .metric-card { background: #1a1a1a; border-radius: 6px; padding: 1.25rem; text-align: center; border: 1px solid #333; }
+    .metric-value { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: #e50914; }
+    .metric-label { color: #808080; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .recommendations-list { display: grid; gap: 1rem; }
+    .rec-item { background: #1a1a1a; border-left: 4px solid #e50914; padding: 1rem 1.25rem; border-radius: 0 6px 6px 0; }
+    .rec-item strong { color: #fff; }
+    .rec-item p { color: #808080; margin: 0; font-size: 0.9rem; }
+    
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
+    .tech-tag { padding: 0.5rem 1rem; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; font-size: 0.85rem; color: #b3b3b3; }
+    
     /* Responsive */
     @media (max-width: 1024px) {
       .hero-bg { width: 100%; opacity: 0.3; }
@@ -129,6 +178,7 @@
       .about-image img { max-width: 300px; margin: 0 auto; }
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-container { grid-template-columns: repeat(2, 1fr); }
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -136,6 +186,7 @@
       .projects-grid, .edu-grid { grid-template-columns: 1fr; }
       .skills-grid { grid-template-columns: 1fr; }
       .hero-meta { gap: 1rem; }
+      .modal-header h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -163,7 +214,7 @@
       <div class="hero-tag"><i class="fas fa-chart-line"></i> Available for Hire</div>
       <h1>RISHAB KUMAR</h1>
       <p class="hero-title">Data & Business Analyst Professional</p>
-      <p class="hero-description">Analytics professional skilled in NLP, predictive modeling, ETL pipeline development, and financial analysis. I’ve led analytics teams, improved workflows, and uncovered customer and donor behavior patterns, delivering insights and A/B tests that drove measurable impact.</p>
+      <p class="hero-description">Analytics professional skilled in NLP, predictive modeling, ETL pipeline development, and financial analysis. I've led analytics teams, improved workflows, and uncovered customer and donor behavior patterns, delivering insights and A/B tests that drove measurable impact.</p>
       <div class="hero-meta">
         <div class="meta-item"><i class="fas fa-briefcase"></i> 2 Years Experience</div>
         <div class="meta-item"><i class="fas fa-graduation-cap"></i> MS Business Analytics</div>
@@ -305,7 +356,8 @@
       <h2 class="section-title">Featured Projects</h2>
       <div class="projects-grid">
         
-        <div class="project-card">
+        <!-- NOVICA Project Card - CLICKABLE -->
+        <div class="project-card" onclick="openModal('novica-modal')">
           <div class="project-body">
             <h3 class="project-title">NOVICA Customer Review Analysis</h3>
             <p class="project-desc">End-to-end NLP system processing 40,000+ product SKUs using BERT sentiment analysis, LDA topic modeling, and aspect-based sentiment modules for executive decision-making.</p>
@@ -379,6 +431,163 @@
     <p>© 2025 Rishab Kumar. Turning data into decisions.</p>
   </footer>
 
+  <!-- ============ NOVICA PROJECT MODAL ============ -->
+  <div class="project-modal" id="novica-modal">
+    <button class="modal-close" onclick="closeModal('novica-modal')"><i class="fas fa-times"></i></button>
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>NOVICA Amazon Review Analysis</h1>
+        <p>Empowering Artisan Visibility Through Customer Sentiment Intelligence</p>
+      </div>
+      
+      <!-- Problem Statement -->
+      <div class="modal-section">
+        <h2>Problem Statement</h2>
+        <p>NOVICA, an e-commerce platform supporting artisans from developing countries, needed to understand customer pain points across 40,000+ SKUs. The company lacked systematic insight into why certain categories underperformed and how to reduce returns.</p>
+        <p><strong style="color:#fff;">Objectives:</strong></p>
+        <ul>
+          <li>Analyze 17,000+ reviews to uncover satisfaction/dissatisfaction patterns</li>
+          <li>Detect underperforming SKUs through sentiment analysis</li>
+          <li>Translate findings into actionable business recommendations</li>
+        </ul>
+      </div>
+      
+      <!-- Data Collection -->
+      <div class="modal-section">
+        <h2>Data Collection Pipeline</h2>
+        <p>Built a custom Python scraper to collect Amazon product data and reviews at scale:</p>
+        
+        <table class="modal-table">
+          <tr><th>Component</th><th>Details</th></tr>
+          <tr><td>Source</td><td>Amazon product pages via ASIN lookup</td></tr>
+          <tr><td>Tech Stack</td><td>Python, BeautifulSoup, Requests, Pandas</td></tr>
+          <tr><td>Output</td><td>17,265 reviews across 6,973 products</td></tr>
+        </table>
+        
+        <p><strong style="color:#fff;">Key Engineering Features:</strong></p>
+        <ul>
+          <li>Rotating user agents & proxy support to avoid detection</li>
+          <li>Exponential backoff (5s → 180s) for rate limiting</li>
+          <li>Checkpoint system saving every 10 ASINs to prevent data loss</li>
+          <li>Bot detection handling (CAPTCHA/robot check recognition)</li>
+        </ul>
+        
+        <div class="modal-code">
+          <pre><span class="comment"># Core scraping logic</span>
+<span class="keyword">def</span> <span class="function">get_product_page</span>(asin: str) -> Optional[str]:
+    url = <span class="string">f"https://www.amazon.com/dp/{asin}"</span>
+    <span class="keyword">for</span> attempt <span class="keyword">in</span> range(MAX_RETRIES):
+        r = session.get(url, headers=build_headers(), timeout=20)
+        <span class="keyword">if</span> r.status_code == 200 <span class="keyword">and not</span> looks_like_bot_block(r.text):
+            <span class="keyword">return</span> r.text
+        <span class="comment"># Exponential backoff on 429/503</span>
+        time.sleep(min(BACKOFF_MAX, BACKOFF_BASE * 2**attempt))
+    <span class="keyword">return</span> None</pre>
+        </div>
+      </div>
+      
+      <!-- Analysis Pipeline -->
+      <div class="modal-section">
+        <h2>Analysis Pipeline</h2>
+        <table class="modal-table">
+          <tr><th>Phase</th><th>Approach</th></tr>
+          <tr><td>Cleaning</td><td>Removed duplicates, filtered non-English reviews</td></tr>
+          <tr><td>Sentiment</td><td>BERT model fine-tuned for product reviews (scale: -1 to +1)</td></tr>
+          <tr><td>Topic Modeling</td><td>BERTopic with all-MiniLM-L6-v2 transformer</td></tr>
+          <tr><td>Issue Classification</td><td>7 categories: Quality Defect, Size Issue, Color Mismatch, Value Concern, Material Quality, Appearance Mismatch, Shipping Damage</td></tr>
+        </table>
+      </div>
+      
+      <!-- Executive Dashboard -->
+      <div class="modal-section">
+        <h2>Executive Dashboard</h2>
+        <div class="image-placeholder">
+          <i class="fas fa-chart-bar"></i>
+          <span>Executive Performance Dashboard Image</span>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card"><p class="metric-value">17,862</p><p class="metric-label">Total Reviews</p></div>
+          <div class="metric-card"><p class="metric-value">6,973</p><p class="metric-label">Products</p></div>
+          <div class="metric-card"><p class="metric-value">88</p><p class="metric-label">Satisfaction Score</p></div>
+          <div class="metric-card"><p class="metric-value">77%</p><p class="metric-label">5-Star Reviews</p></div>
+        </div>
+      </div>
+      
+      <!-- Category Performance -->
+      <div class="modal-section">
+        <h2>Category Performance Analysis</h2>
+        <div class="image-placeholder">
+          <i class="fas fa-chart-line"></i>
+          <span>Category Performance Bar Chart Image</span>
+        </div>
+        <p>Sentiment scores ranged from <strong style="color:#fff;">0.45 (Outdoor Living)</strong> to <strong style="color:#fff;">0.87 (Furniture)</strong>—a 0.42-point gap.</p>
+        <p><strong style="color:#fff;">Key Finding:</strong> Shipping & Delivery underperformed across ALL categories, while Product Experience consistently exceeded expectations.</p>
+      </div>
+      
+      <!-- Heatmap -->
+      <div class="modal-section">
+        <h2>Cross-Category Issue Distribution</h2>
+        <div class="image-placeholder">
+          <i class="fas fa-th"></i>
+          <span>Issue Distribution Heatmap Image</span>
+        </div>
+        <p>Issue analysis filtered for 10+ occurrences. Jewelry excluded due to volume dominance (80% of reviews).</p>
+        <p><strong style="color:#fff;">Top Issues:</strong> Quality Defect, Size Issue, Color Mismatch, Shipping Damage</p>
+      </div>
+      
+      <!-- Jewelry Deep Dive -->
+      <div class="modal-section">
+        <h2>Jewelry Deep Dive</h2>
+        <div class="image-placeholder">
+          <i class="fas fa-gem"></i>
+          <span>Jewelry Issue Analysis Dashboard Image</span>
+        </div>
+        <p>NOVICA's core category (75% of reviews):</p>
+        <table class="modal-table">
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Total Reviews</td><td>13,398</td></tr>
+          <tr><td>Issue Rate</td><td>11.5%</td></tr>
+          <tr><td>Top Issue</td><td>Size Fit (50%)</td></tr>
+        </table>
+      </div>
+      
+      <!-- Recommendations -->
+      <div class="modal-section">
+        <h2>Recommendations</h2>
+        <div class="recommendations-list">
+          <div class="rec-item">
+            <strong>1. Authentic Storytelling</strong>
+            <p>Justify premium pricing through artisan narratives and cultural heritage</p>
+          </div>
+          <div class="rec-item">
+            <strong>2. Eliminate Size Barriers</strong>
+            <p>Detailed size guides with diverse model images for Jewelry & Apparel</p>
+          </div>
+          <div class="rec-item">
+            <strong>3. Category-Specific Fixes</strong>
+            <p>Durability ratings, pre-shipping inspections, care manuals</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Conclusion -->
+      <div class="modal-section">
+        <h2>Conclusion</h2>
+        <p>Customer dissatisfaction stems from <strong style="color:#fff;">expectation mismatches, not product quality</strong>. By improving sizing transparency and category-specific operations, NOVICA can reduce returns and strengthen brand trust.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">BeautifulSoup</span>
+          <span class="tech-tag">BERT</span>
+          <span class="tech-tag">BERTopic</span>
+          <span class="tech-tag">Tableau</span>
+          <span class="tech-tag">Pandas</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
   <script>
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
@@ -388,6 +597,37 @@
       } else {
         navbar.classList.remove('scrolled');
       }
+    });
+    
+    // Modal functions
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.project-modal').forEach(modal => {
+          modal.classList.remove('active');
+        });
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    // Close modal when clicking outside content
+    document.querySelectorAll('.project-modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
     });
   </script>
 </body>
