@@ -170,6 +170,30 @@
     .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
     .tech-tag { padding: 0.5rem 1rem; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; font-size: 0.85rem; color: #b3b3b3; }
     
+    /* ============ CERTIFICATIONS SECTION ============ */
+    .cert-row { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; scroll-behavior: smooth; }
+    .cert-row::-webkit-scrollbar { height: 4px; }
+    .cert-row::-webkit-scrollbar-track { background: #333; }
+    .cert-row::-webkit-scrollbar-thumb { background: #e50914; border-radius: 4px; }
+    .cert-card { min-width: 280px; background: #1a1a1a; border-radius: 6px; padding: 1.5rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; border: 1px solid #333; transition: all 0.3s; flex-shrink: 0; position: relative; }
+    .cert-card:hover { transform: scale(1.03); border-color: #e50914; box-shadow: 0 10px 30px rgba(229,9,20,0.2); }
+    .cert-icon { width: 50px; height: 50px; background: rgba(229,9,20,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cert-icon i { font-size: 1.4rem; color: #e50914; }
+    .cert-body { flex: 1; }
+    .cert-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: #fff; }
+    .cert-issuer { font-size: 0.85rem; color: #808080; margin-bottom: 0.15rem; }
+    .cert-date { font-size: 0.75rem; color: #e50914; font-weight: 600; }
+    .cert-badge { position: absolute; top: 1rem; right: 1rem; color: #555; font-size: 0.8rem; transition: color 0.3s; }
+    .cert-card:hover .cert-badge { color: #e50914; }
+    
+    /* Certification Modal */
+    .cert-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
+    .cert-modal.active { display: flex; animation: fadeIn 0.3s ease; }
+    .cert-modal-content { max-width: 800px; width: 90%; text-align: center; padding: 2rem; }
+    .cert-modal-content img { max-width: 100%; max-height: 70vh; border-radius: 8px; border: 2px solid #333; margin-bottom: 1.5rem; }
+    .cert-modal-content h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+    .cert-modal-content p { color: #808080; }
+    
     /* Responsive */
     @media (max-width: 1024px) {
       .hero-bg { width: 100%; opacity: 0.3; }
@@ -199,6 +223,7 @@
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </div>
@@ -381,6 +406,36 @@
             </div>
             <div class="exp-skills"><span class="skill-tag">Python</span><span class="skill-tag">Polars</span><span class="skill-tag">Scikit-learn</span><span class="skill-tag">K-means</span><span class="skill-tag">PCA</span></div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <div class="section-container">
+      <h2 class="section-title">Certifications</h2>
+      <div class="cert-row">
+        
+        <div class="cert-card" onclick="openCertModal('cert1-modal')">
+          <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+          <div class="cert-body">
+            <h3 class="cert-name">Data Literacy Fundamentals</h3>
+            <p class="cert-issuer">DataCamp</p>
+            <p class="cert-date">March 2025</p>
+          </div>
+          <div class="cert-badge"><i class="fas fa-external-link-alt"></i></div>
+        </div>
+
+        <div class="cert-card" onclick="openCertModal('cert2-modal')">
+          <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+          <div class="cert-body">
+            <h3 class="cert-name">Bloomberg Market Concepts</h3>
+            <p class="cert-issuer">Bloomberg for Education</p>
+            <p class="cert-date">2024</p>
+          </div>
+          <div class="cert-badge"><i class="fas fa-external-link-alt"></i></div>
         </div>
 
       </div>
@@ -729,6 +784,25 @@
     
   </div>
  </div>
+
+  <!-- ============ CERTIFICATION MODALS ============ -->
+  <div class="cert-modal" id="cert1-modal">
+    <button class="modal-close" onclick="closeCertModal('cert1-modal')"><i class="fas fa-times"></i></button>
+    <div class="cert-modal-content">
+      <img src="cert-datacamp-data-literacy.png" alt="DataCamp Data Literacy Certificate">
+      <h3>Data Literacy Fundamentals Certification</h3>
+      <p>Issued by DataCamp • March 2025</p>
+    </div>
+  </div>
+
+  <div class="cert-modal" id="cert2-modal">
+    <button class="modal-close" onclick="closeCertModal('cert2-modal')"><i class="fas fa-times"></i></button>
+    <div class="cert-modal-content">
+      <img src="cert-bloomberg-bmc.png" alt="Bloomberg Market Concepts Certificate">
+      <h3>Bloomberg Market Concepts (BMC)</h3>
+      <p>Issued by Bloomberg for Education • 2024</p>
+    </div>
+  </div>
   
   <script>
     // Navbar scroll effect
@@ -752,10 +826,21 @@
       document.body.style.overflow = 'auto';
     }
     
+    // Certification Modal functions
+    function openCertModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeCertModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+    
     // Close modal on escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.project-modal').forEach(modal => {
+        document.querySelectorAll('.project-modal, .cert-modal').forEach(modal => {
           modal.classList.remove('active');
         });
         document.body.style.overflow = 'auto';
@@ -764,6 +849,16 @@
     
     // Close modal when clicking outside content
     document.querySelectorAll('.project-modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+    
+    // Close cert modal when clicking outside content
+    document.querySelectorAll('.cert-modal').forEach(modal => {
       modal.addEventListener('click', function(e) {
         if (e.target === this) {
           this.classList.remove('active');
