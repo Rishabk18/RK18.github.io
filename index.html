@@ -370,7 +370,7 @@
           </div>
         </div>
         
-        <div class="project-card">
+        <div class="project-card" onclick="openModal('usedcar-modal')">
           <div class="project-body">
             <h3 class="project-title">Used Car Market Segmentation</h3>
             <p class="project-desc">Comprehensive market analysis of 98,000+ vehicle listings using machine learning to identify pricing strategies and buyer personas for targeted marketing.</p>
@@ -576,6 +576,160 @@
     </div>
   </div>
 
+  <!-- ============ USED CAR PROJECT MODAL ============ -->
+  <div class="project-modal" id="usedcar-modal">
+    <button class="modal-close" onclick="closeModal('usedcar-modal')"><i class="fas fa-times"></i></button>
+  
+   <div class="modal-content">
+     <div class="modal-header">
+       <h1>Used Car Market Segmentation</h1>
+       <p>Pricing Optimization, Segmentation & Brand Positioning</p>
+     </div>
+    
+    <!-- Problem Statement -->
+    <div class="modal-section">
+      <h2>Problem Statement</h2>
+      <p>The used car market presents significant challenges for dealerships seeking to optimize their operations and marketing strategies. With thousands of vehicles varying across brand, age, mileage, engine specifications, and fuel type, dealerships struggle to make data-driven decisions about three critical areas:</p>
+      <ul>
+        <li><strong style="color:#fff;">Pricing Optimization:</strong> Which vehicle attributes have the strongest influence on price?</li>
+        <li><strong style="color:#fff;">Market Segmentation:</strong> Can distinct buyer segments be identified based on vehicle preferences?</li>
+        <li><strong style="color:#fff;">Brand Positioning:</strong> Which brands command premium pricing, and where do opportunities exist?</li>
+      </ul>
+    </div>
+    
+    <!-- Data Overview -->
+    <div class="modal-section">
+      <h2>Data Overview</h2>
+      <table class="modal-table">
+        <tr><th>Attribute</th><th>Details</th></tr>
+        <tr><td>Dataset Size</td><td>98,836 vehicle listings</td></tr>
+        <tr><td>Brands</td><td>9 (Mercedes, BMW, Audi, VW, Toyota, Ford, Hyundai, Skoda, Vauxhall)</td></tr>
+        <tr><td>Variables</td><td>10 (Brand, Model, Year, Price, Transmission, Mileage, Fuel Type, Tax, MPG, Engine Size)</td></tr>
+        <tr><td>Avg Price</td><td>$16,797</td></tr>
+        <tr><td>Avg Mileage</td><td>23,094 miles</td></tr>
+      </table>
+    </div>
+    
+    <!-- Exploratory Data Analysis -->
+    <div class="modal-section">
+      <h2>Exploratory Data Analysis</h2>
+      <img src="image1-eda-dashboard.png" alt="EDA Dashboard" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <div class="metrics-grid">
+        <div class="metric-card"><p class="metric-value">98,836</p><p class="metric-label">Total Vehicles</p></div>
+        <div class="metric-card"><p class="metric-value">$16,797</p><p class="metric-label">Avg Price</p></div>
+        <div class="metric-card"><p class="metric-value">9</p><p class="metric-label">Brands</p></div>
+        <div class="metric-card"><p class="metric-value">7.9 yrs</p><p class="metric-label">Avg Vehicle Age</p></div>
+      </div>
+    </div>
+    
+    <!-- Price Distribution & Brand Analysis -->
+    <div class="modal-section">
+      <h2>Price Distribution & Brand Analysis</h2>
+      <img src="image4-brand-distribution.png" alt="Brand Distribution" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <p>The price distribution exhibits a classic right-skewed pattern, with most vehicles clustered in the $10,000–$25,000 range. <strong style="color:#fff;">Mercedes, Audi, and BMW command premium pricing</strong>, while Vauxhall and Hyundai occupy the budget segment.</p>
+    </div>
+    
+    <!-- Price Sensitivity Analysis -->
+    <div class="modal-section">
+      <h2>Price Sensitivity Analysis</h2>
+      <img src="image3-price-sensitivity.png" alt="Price Sensitivity" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <table class="modal-table">
+        <tr><th>Factor</th><th>Correlation</th><th>Impact</th></tr>
+        <tr><td>Engine Size</td><td>+0.639</td><td>Strongest positive driver</td></tr>
+        <tr><td>Vehicle Year</td><td>+0.491</td><td>Newer = higher price</td></tr>
+        <tr><td>Mileage</td><td>-0.418</td><td>Higher mileage = lower price</td></tr>
+      </table>
+    </div>
+    
+    <!-- Transmission & Fuel Type Impact -->
+    <div class="modal-section">
+      <h2>Transmission & Fuel Type Impact</h2>
+      <img src="image2-transmission-fuel.png" alt="Transmission and Fuel Analysis" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <p><strong style="color:#fff;">Key Findings:</strong> Semi-Auto commands highest prices ($24,289), followed by Automatic ($21,603). Manual transmission averages lowest at $12,108. Diesel and Hybrid fuel types command ~$19K, while Petrol averages $14,775.</p>
+    </div>
+    
+    <!-- Price Correlation Matrix -->
+    <div class="modal-section">
+      <h2>Price Correlation Matrix</h2>
+      <img src="image7-correlation-matrix.png" alt="Correlation Heatmap" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <p>Engine size shows the strongest positive correlation with price (0.64), while mileage has a strong negative correlation (-0.42). Year and price are moderately correlated (0.49).</p>
+    </div>
+    
+    <!-- Market Segmentation -->
+    <div class="modal-section">
+      <h2>Market Segmentation (K-Means Clustering)</h2>
+      <p>Using the elbow method, <strong style="color:#fff;">4 distinct customer segments</strong> were identified:</p>
+      <table class="modal-table">
+        <tr><th>Segment</th><th>Avg Price</th><th>Avg Mileage</th><th>Count</th><th>Profile</th></tr>
+        <tr><td>Budget</td><td>$10,727</td><td>57,830</td><td>17,009</td><td>Older, high-mileage vehicles</td></tr>
+        <tr><td>Economy</td><td>$11,952</td><td>21,472</td><td>44,093</td><td>Affordable, moderate mileage</td></tr>
+        <tr><td>Mid-Range</td><td>$22,445</td><td>8,462</td><td>31,972</td><td>Newer, low-mileage</td></tr>
+        <tr><td>Premium</td><td>$40,453</td><td>14,165</td><td>5,762</td><td>Luxury/performance vehicles</td></tr>
+      </table>
+    </div>
+    
+    <!-- PCA Visualization -->
+    <div class="modal-section">
+      <h2>PCA Visualization of Clusters</h2>
+      <img src="image5-pca-clusters.png" alt="PCA Clusters" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <p>PCA reduces the 6-dimensional clustering space to 2D for visualization. <strong style="color:#fff;">PC1 captures price + engine size + year patterns</strong>, while PC2 relates to mileage + efficiency variation.</p>
+    </div>
+    
+    <!-- Brand Strategic Quadrant -->
+    <div class="modal-section">
+      <h2>Brand Strategic Quadrant Analysis</h2>
+      <img src="image6-brand-quadrant.png" alt="Brand Quadrant" style="width:100%; border-radius:8px; margin-bottom:1rem;">
+      <table class="modal-table">
+        <tr><th>Quadrant</th><th>Brands</th><th>Strategy</th></tr>
+        <tr><td>Premium Performance</td><td>Audi, Mercedes, BMW</td><td>Emphasize prestige & engineering</td></tr>
+        <tr><td>Premium Efficient</td><td>Mercedes, BMW</td><td>Balance luxury with fuel economy</td></tr>
+        <tr><td>Value Performance</td><td>Hyundai, Vauxhall</td><td>Budget power options</td></tr>
+        <tr><td>Value Efficient</td><td>Toyota, Ford</td><td>Highlight long-term cost savings</td></tr>
+      </table>
+    </div>
+    
+    <!-- Recommendations -->
+    <div class="modal-section">
+      <h2>Recommendations</h2>
+      <div class="recommendations-list">
+        <div class="rec-item">
+          <strong>1. Rebalance Inventory</strong>
+          <p>Shift toward mid-range and economy vehicles where demand is highest (76% of market)</p>
+        </div>
+        <div class="rec-item">
+          <strong>2. Premium Pricing Rules</strong>
+          <p>Add fixed premium for larger engines (+$1K per 0.5L) and automatic transmissions (8-12% higher)</p>
+        </div>
+        <div class="rec-item">
+          <strong>3. Depreciation-Adjusted Rotation</strong>
+          <p>Move older/high-mileage inventory faster with timed discounts</p>
+        </div>
+        <div class="rec-item">
+          <strong>4. Segmented Marketing</strong>
+          <p>Target value buyers with "Low Ownership Cost" messaging; target performance buyers with premium positioning</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Conclusion -->
+    <div class="modal-section">
+       <h2>Conclusion</h2>
+       <p>Data-driven pricing and segmentation create the strongest path to higher margins, faster inventory turnover, and more relevant marketing in the competitive used-car market. <strong style="color:#fff;">Key price drivers are mileage, year, engine size, MPG, and transmission.</strong></p>
+       <div class="tech-tags">
+         <span class="tech-tag">Python</span>
+         <span class="tech-tag">Polars</span>
+         <span class="tech-tag">Pandas</span>
+         <span class="tech-tag">Scikit-learn</span>
+         <span class="tech-tag">K-Means</span>
+         <span class="tech-tag">PCA</span>
+         <span class="tech-tag">Plotly</span>
+         <span class="tech-tag">Matplotlib</span>
+      </div>
+    </div>
+    
+  </div>
+ </div>
+  
   <script>
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
